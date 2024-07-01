@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from services import create_user_service, get_users, validate_user
-from models import User_class, User_create, User_login, User_response
+from ..services import create_user_service, get_users, validate_user
+from ..models import User_class, User_create, User_login, User_response
 
 router = APIRouter()
 
