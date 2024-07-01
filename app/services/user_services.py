@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from ..models import User_create, User_class, User_login, User_response
-from configurations import conn, cur
+from ..configurations import conn, cur
 
 
 def get_users():
