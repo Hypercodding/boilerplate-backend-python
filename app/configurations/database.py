@@ -1,17 +1,21 @@
+import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-DB_NAME = "figma"
-DB_USER = "postgres"
-DB_PASSWORD = "Hyper"
-DB_HOST = "localhost"
+# Fetch database credentials from environment variables
+DB_NAME = os.getenv("RAILWAY_DATABASE_NAME", "users")
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASSWORD = os.getenv("PGPASSWORD")
+DB_HOST = os.getenv("PGHOST")
+DB_PORT = os.getenv("PGPORT", "5432")  # Default port for PostgreSQL
 
-
+# Establish database connection
 conn = psycopg2.connect(
     dbname=DB_NAME,
     user=DB_USER,
     password=DB_PASSWORD,
     host=DB_HOST,
+    port=DB_PORT,
     cursor_factory=RealDictCursor
 )
 
