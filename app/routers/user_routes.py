@@ -14,7 +14,7 @@ def create_user(user: User_create):
     new_user = create_user_service(user)
     return new_user 
 
-@router.post("/user-login", response_model=User_response)
+@router.post("/user-login", response_model=dict)
 def login_validation(user: User_login):
     validated_user = validate_user(user.email, user.password)
     return validated_user
