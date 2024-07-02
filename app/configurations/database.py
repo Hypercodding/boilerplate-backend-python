@@ -7,7 +7,7 @@ DB_NAME = os.getenv("RAILWAY_DATABASE_NAME", "users")
 DB_USER = os.getenv("POSTGRES_USER")
 DB_PASSWORD = os.getenv("PGPASSWORD")
 DB_HOST = os.getenv("PGHOST")
-DB_PORT = os.getenv()  # Default port for PostgreSQL
+DB_PORT = os.getenv("PGPORT")  # Default port for PostgreSQL
 
 # Establish database connection
 conn = psycopg2.connect(
