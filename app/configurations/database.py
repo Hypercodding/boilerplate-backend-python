@@ -3,7 +3,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 
 # Fetch database credentials from environment variables
-DB_NAME = os.getenv("RAILWAY_DATABASE_NAME", "Postgres")
+DB_NAME = os.getenv("RAILWAY_DATABASE_NAME", "railway")
 DB_USER = os.getenv("POSTGRES_USER")
 DB_PASSWORD = os.getenv("PGPASSWORD")
 DB_HOST = os.getenv("PGHOST")
