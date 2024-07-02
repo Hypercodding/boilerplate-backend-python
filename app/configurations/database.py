@@ -12,9 +12,9 @@ DB_PORT = os.getenv("PGPORT", "5432")  # Default port for PostgreSQL
 # Establish database connection
 conn = psycopg2.connect(
     dbname=DB_NAME,
-    user=DB_USER,
+    user="postgres",
     password=DB_PASSWORD,
-    host=DB_HOST,
+    host="roundhouse.proxy.rlwy.net",
     port=DB_PORT,
     cursor_factory=RealDictCursor
 )
