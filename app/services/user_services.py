@@ -16,6 +16,14 @@ def get_users():
     return user
 
 def create_user_service(user: User_create):
+    cur.execute(
+    "SELECT id FROM users WHERE email = %s", (user.email,)
+    )
+    
+    existing_user = cur.fetchone()
+    if existing_user:
+        return {"error": "user already exists"}
+    
     hashed_password = hash_password(user.password)
     user.password = hashed_password
     cur.execute(
@@ -37,4 +45,5 @@ def validate_user(email: str, password: str) -> User_response:
         return { "access_token": access_token, "token_type": "bearer", "id": user["id"], "name": user["name"], "email": user["email"]}
     else:
         return None
+    
       
