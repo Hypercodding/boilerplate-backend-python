@@ -49,8 +49,9 @@ def get_images(user_id: int) -> List[dict]:
             else:
                 # Handle case where file is not found
                 raise HTTPException(status_code=404, detail=f"Image '{filename}' not found.")
-
+        print(image_data)
         return image_data
+    
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve images: {str(e)}")
