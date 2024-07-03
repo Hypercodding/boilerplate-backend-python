@@ -39,7 +39,7 @@ def validate_user(email: str, password: str) -> User_response:
 
     if user and verify_password(password, user['password']):
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRY_MINUTE)
-        access_token = create_access_token(data={"sub": user["email"]}, expires_delta=access_token_expires)
+        access_token = create_access_token(data={"mail": user["email"],"id": user["id"],"name": user["name"]}, expires_delta=access_token_expires)
         # decoded = decoded_access_token(access_token)
         print(access_token)
         return { "access_token": access_token, "token_type": "bearer", "id": user["id"], "name": user["name"], "email": user["email"]}
