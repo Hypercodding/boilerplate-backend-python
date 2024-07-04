@@ -11,3 +11,4 @@ class Image_class(BaseModel):
 class Image_response(BaseModel):
     image_id: int
     filename: str
+    url: str

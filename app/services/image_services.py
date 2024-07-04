@@ -4,7 +4,7 @@ from ..configurations import cur as cursor, conn
 import os
 import shutil
 
-UPLOAD_DIR = "uploads" 
+UPLOAD_DIR = "/mnt/data/uploads" 
 
 def save_image(user_id: int, file: UploadFile) -> dict:
     try:
@@ -27,31 +27,29 @@ def save_image(user_id: int, file: UploadFile) -> dict:
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save image: {str(e)}")
 
+
 def get_images(user_id: int) -> List[dict]:
     try:
         cursor.execute("SELECT image_id, filename FROM images WHERE user_id = %s", (user_id,))
         images = cursor.fetchall()
-
+        print(images)
         image_data = []
         for image in images:
             image_id = image['image_id']
             filename = image['filename']
             file_path = os.path.join(UPLOAD_DIR, filename)
-            
+            print(file_path)
             if os.path.exists(file_path):
-                with open(file_path, "rb") as file:
-                    image_bytes = file.read()
-                    image_data.append({
-                        "image_id": image_id,
-                        "filename": filename,
-                        "data": image_bytes
-                    })
+                image_data.append({
+                    "image_id": image_id,
+                    "filename": filename,
+                    "url": f"https://boilerplate-backend-python-production.up.railway.app/uploads/{filename}"  # Update this to your production URL
+                })
             else:
                 # Handle case where file is not found
                 raise HTTPException(status_code=404, detail=f"Image '{filename}' not found.")
-        print(image_data)
+        
         return image_data
-    
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to retrieve images: {str(e)}")
