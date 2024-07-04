@@ -44,7 +44,7 @@ def get_images(user_id: int) -> List[dict]:
                 image_data.append({
                     "image_id": image_id,
                     "filename": filename,
-                    "url": f"https://boilerplate-backend-python-production.up.railway.app//mnt/data/uploads/{filename}"  # Update this to your production URL
+                    "url": f"https://boilerplate-backend-python-production.up.railway.app/mnt/data/uploads/{filename}"  # Update this to your production URL
                 })
             else:
                 # Handle case where file is not found
