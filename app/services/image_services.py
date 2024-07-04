@@ -12,6 +12,7 @@ def save_image(user_id: int, file: UploadFile) -> dict:
         file_location = os.path.join(UPLOAD_DIR, file.filename)
         with open(file_location, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
+            print("uploaded")
         
         # Store image details in database
         cursor.execute(
@@ -43,7 +44,7 @@ def get_images(user_id: int) -> List[dict]:
                 image_data.append({
                     "image_id": image_id,
                     "filename": filename,
-                    "url": f"https://boilerplate-backend-python-production.up.railway.app/uploads/{filename}"  # Update this to your production URL
+                    "url": f"https://boilerplate-backend-python-production.up.railway.app//mnt/data/uploads/{filename}"  # Update this to your production URL
                 })
             else:
                 # Handle case where file is not found
