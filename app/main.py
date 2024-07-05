@@ -4,6 +4,7 @@ import os
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import user_routes as user, image_routers as image
 from .configurations import configure_cors
+from mangum import Mangum
 
 
 app = FastAPI()
@@ -11,6 +12,8 @@ uploads_directory = "/mnt/data/uploads"
 
 
 configure_cors(app)
+
+handler = Mangum(app)
 
 @app.get("/list-uploads")
 async def list_uploads():
